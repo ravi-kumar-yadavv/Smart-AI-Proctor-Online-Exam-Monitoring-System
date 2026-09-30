@@ -6,9 +6,9 @@
 ![YOLOv5](https://img.shields.io/badge/YOLOv5-Object_Detection-orange?style=for-the-badge)
 
 ## 📌 Overview
-This is a **Commercial-Grade AI Proctoring System** designed to monitor online examinations automatically. It uses **Computer Vision (OpenCV, MediaPipe, YOLO)** and **Audio Analysis (Speech Recognition)** to detect suspicious activities in real-time.
+This is an **AI-Powered online proctoring system** designed to monitor online examinations automatically. It uses **Computer Vision (OpenCV, MediaPipe, YOLO)** and **Audio Analysis (Speech Recognition)** to detect suspicious activities in real-time.
 
-Unlike basic proctoring tools, this system features **"Jasoos Mode" (Spy Mode)** which records whispered conversations, tracks eye gaze, and logs evidence with screenshots.
+Unlike basic proctoring tools, this system features **"Audio Monitoring"** which records whispered conversations, tracks eye gaze, and logs evidence with screenshots.
 
 ---
 
@@ -20,10 +20,10 @@ Unlike basic proctoring tools, this system features **"Jasoos Mode" (Spy Mode)**
 - **Gaze Tracking:** Alerts if the student looks away from the screen (Left/Right).
 - **Head Pose Estimation:** Detects if the student is looking down or turning their head.
 
-### 🎤 Audio Intelligence ("Jasoos Mode")
-- **Speech-to-Text:** Converts audio to text in real-time to detect conversations.
-- **Keyword Trigger:** Automatically flags suspicious words like *"Answer", "Bata de", "Hello", "Copy"* etc.
-- **Volume Monitor:** Detects high background noise.
+### 🎤 Audio Monitoring 
+- **Speech-to-Text:** Converts captured audio into text for analysis.
+- **Keyword Monitoring:** Checks detected speech for configured keywords.
+- **Volume Monitoring:** Monitors background audio levels.
 
 ### 🔒 Browser Security (Extension)
 - **Tab Switching Lock:** Alerts if the student switches tabs.
@@ -32,7 +32,7 @@ Unlike basic proctoring tools, this system features **"Jasoos Mode" (Spy Mode)**
 
 ### 📂 Automated Evidence Logging
 - **CSV Logs:** Timestamps every warning in `exam_logs.csv`.
-- **Photo Proof:** Automatically captures screenshots of the student when cheating is detected (`evidence/` folder).
+- **Photo Proof:** Automatically captures screenshots of the student when suspicious activity is detected (`evidence/` folder).
 - **Speech Logs:** Saves transcripts of conversations in `speech_evidence.txt`.
 
 ---
