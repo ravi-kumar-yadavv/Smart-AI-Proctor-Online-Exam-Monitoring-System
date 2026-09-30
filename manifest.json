@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "AI Proctoring System",
+  "version": "1.0",
+  "description": "Monitors online exams using AI.",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+  },
+
+  "icons": {
+    "128": "icon.png"
+  }
+}

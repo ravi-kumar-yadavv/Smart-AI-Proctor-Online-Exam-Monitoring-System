@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Proctoring System</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; display: flex; flex-direction: column; align-items: center; background-color: #f0f2f5; }
+        .container { max-width: 680px; text-align: center; }
+        h1 { color: #333; }
+        #videoElement { border: 5px solid #ccc; border-radius: 10px; width: 100%; height: auto; background-color: #000; }
+        #alert-box { margin-top: 20px; min-height: 50px; width: 100%; background-color: #fff; border-radius: 10px; padding: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .warning { color: #D8000C; font-weight: bold; font-size: 1.2em; }
+        .ok { color: #2E7D32; font-weight: bold; font-size: 1.2em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI Proctoring System</h1>
+        <video autoplay="true" id="videoElement"></video>
+        <canvas id="canvas" style="display:none;"></canvas>
+        <div id="alert-box">
+            <p id="status-text" class="ok">Connecting to server...</p>
+        </div>
+    </div>
+
+    <script>
+        const video = document.getElementById('videoElement');
+        const canvas = document.getElementById('canvas');
+        const context = canvas.getContext('2d');
+        const statusText = document.getElementById('status-text');
+
+        // Access the webcam
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+            })
+            .catch(err => console.error("Error accessing webcam: ", err));
+        
+        // Send a frame to the backend every 2 seconds
+        setInterval(() => {
+            // Set canvas dimensions to match video
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            // Draw the current video frame onto the canvas
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            // Convert the canvas image to a Base64 JPEG string
+            let imageData = canvas.toDataURL('image/jpeg', 0.8);
+
+            // Send this data to our Flask backend using fetch()
+            fetch('http://127.0.0.1:5001/process_frame', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ image_data: imageData }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Update the status text with warnings from the backend
+                if (data.warnings && data.warnings.length > 0) {
+                    statusText.className = 'warning';
+                    statusText.innerHTML = data.warnings.join('<br>');
+                } else {
+                    statusText.className = 'ok';
+                    statusText.innerText = 'Status: OK';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                statusText.className = 'warning';
+                statusText.innerText = 'Error connecting to the server.';
+            });
+
+        }, 2000); // Send data every 2000 milliseconds (2 seconds)
+    </script>
+</body>
+</html>
