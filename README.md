@@ -1,4 +1,4 @@
-# 🛡️ AI-Powered Automated Proctoring System
+# 🛡️ Smart AI Proctor- Online Exam Monitoring System
 
 ![Python](https://img.shields.io/badge/Python-3.x-blue?style=for-the-badge&logo=python)
 ![Flask](https://img.shields.io/badge/Flask-Backend-green?style=for-the-badge&logo=flask)
