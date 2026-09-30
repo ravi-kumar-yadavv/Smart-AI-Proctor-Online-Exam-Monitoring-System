@@ -58,5 +58,5 @@ Unlike basic proctoring tools, this system features **"Jasoos Mode" (Spy Mode)**
 
 ### Step 1: Clone the Repository
 ```bash
-git clone [https://github.com/your-username/AI-Proctor-System.git](https://github.com/your-username/AI-Proctor-System.git)
-cd AI-Proctor-System
+git clone https://github.com/ravi-kumar-yadavv/Smart-AI-Proctor-Online-Exam-Monitoring-System.git
+cd Smart-AI-Proctor-Online-Exam-Monitoring-System
